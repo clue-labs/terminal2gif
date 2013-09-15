@@ -1,0 +1,15 @@
+{
+    "name": "clue/terminal2gif",
+    "description": "Simple wrapper for ttyrec & ttygif to easily record your terminal session and create a looping gif for it ",
+    "keywords": ["terminal", "screencast", "gif", "tty", "ttygif", "ttygit", "record"],
+    "homepage": "https://github.com/clue/terminal2gif",
+    "license": "MIT",
+    "require": {
+        "symfony/console": "~2.1",
+        "symfony/process": "~2.1"
+    },
+    "autoload": {
+        "psr-0": {"Clue": "src/"}
+    },
+    "bin": ["bin/terminal2gif"]
+}

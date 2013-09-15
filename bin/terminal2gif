@@ -1,0 +1,11 @@
+#!/usr/bin/env php
+<?php
+
+use Symfony\Component\Console\Application;
+use Clue\Terminal2gif\Command\Record;
+
+require __DIR__ . '/../vendor/autoload.php';
+
+$app = new Application();
+$app->add(new Record());
+$app->run();
