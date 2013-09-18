@@ -64,13 +64,19 @@ class Terminal2gif
         array_shift($args);
 
         foreach ($args as $arg) {
-            $cmd .= ' ' . escapeshellarg($arg);
+            if (is_array($arg)) {
+                $cmd .= ' ' . $arg[0];
+            } else {
+                $cmd .= ' ' . escapeshellarg($arg);
+            }
         }
+
+        echo $cmd . PHP_EOL;
 
         passthru($cmd);
     }
 
-    private function isMac()
+    public function isMac()
     {
         return (PHP_OS === 'Darwin');
     }

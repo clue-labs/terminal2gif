@@ -58,9 +58,19 @@ class Record extends Command
         $tempdir = $term->getTemp();
         $ttyrec = $tempdir . '/' . $name . '.ttyrec';
 
+        $safe = null;
+        if (!$term->isMac()) {
+            $safe = array('-e "LANG=en PS1=\'$ \' bash --norc"');
+        }
+        //$safe = null;
+
         $output->writeln('[1/3] Starting recording. Hit <info>CTRL+D</info> or type <info>exit</info> to stop recording');
         $input->isInteractive() && $dialog->askConfirmation($output, 'Hit enter to start recording.');
-        $term->exec('ttyrec', $ttyrec);
+        if ($safe === null) {
+            $term->exec('ttyrec', $ttyrec);
+        } else {
+            $term->exec('ttyrec', $safe, $ttyrec);
+        }
         $output->writeln('     <info>Done recording!</info>');
 
         $output->writeln('[2/3] Generating gif images for each frames (this will clear your screen and play back your session!)');
