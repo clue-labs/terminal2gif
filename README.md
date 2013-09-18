@@ -11,7 +11,7 @@ Once clue/terminal2gif is [installed](#install), you can use it via command line
 ### terminal2gif record
 
 The `record` command starts an interactive recording session that will guide
-you through the progress of recording your terminal session and playing it back
+you through the process of recording your terminal session and playing it back
 in order to create a gif for you. Just run:
 
 ```bash
