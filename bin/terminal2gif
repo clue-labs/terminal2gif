@@ -1,11 +1,10 @@
 #!/usr/bin/env php
 <?php
 
-use Symfony\Component\Console\Application;
-use Clue\Terminal2gif\Command\Record;
-
 require __DIR__ . '/../vendor/autoload.php';
 
-$app = new Application();
-$app->add(new Record());
+$app = new Symfony\Component\Console\Application();
+$app->add(new Clue\Terminal2gif\Command\Record());
+$app->add(new Clue\Terminal2gif\Command\Play());
+$app->add(new Clue\Terminal2gif\Command\Info());
 $app->run();
