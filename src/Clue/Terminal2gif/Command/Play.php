@@ -10,6 +10,7 @@ use Clue\Terminal2gif\Terminal2gif;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Helper\DialogHelper;
 use Clue\Terminal2gif\Ttyrecord;
+use Clue\Terminal2gif\Player;
 
 class Play extends Command
 {
@@ -27,9 +28,14 @@ class Play extends Command
         $rate = (float)$input->getOption('rate');
 
         $ttyrecord = new Ttyrecord($path);
+        $player = new Player($ttyrecord);
+        $player->setOutput(function ($chunk) use ($output) {
+            $output->write($chunk);
+        });
+        $player->setRate($rate);
 
         $output->writeln(str_repeat('-', 40));
-        $ttyrecord->play($rate);
+        $player->play();
         $output->writeln(str_repeat('-', 40));
     }
 }

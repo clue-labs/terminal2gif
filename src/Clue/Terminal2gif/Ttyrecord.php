@@ -142,28 +142,6 @@ class Ttyrecord
         return $chunks;
     }
 
-    public function play($rate = 1.0)
-    {
-        if ($rate <= 0) {
-            throw new InvalidArgumentException('Rate must be positive');
-        }
-
-        $last = null;
-        foreach($this->parsed as $one) {
-            $now = $one[0];
-            $delay = 0;
-
-            if ($last !== null) {
-                $delay = ($now - $last) / $rate;
-            }
-            //echo $delay;
-            usleep($delay * 1000000);
-            $last = $now;
-
-            echo $one[1];
-        }
-    }
-
     private function getDateForMicrotime($time)
     {
         $micro = sprintf("%06d", (($time - floor($time)) * 1000000));
